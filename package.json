@@ -1,0 +1,10 @@
+{
+  "name": "govee-node-sdk",
+  "version": "1.0.0",
+  "description": "govee SDK for NodeJS",
+  "main": "dist/",
+  "repository": "https://github.com/shaynlink/govee-node-sdk.git",
+  "author": "shaynlink",
+  "license": "MIT",
+  "private": false
+}
