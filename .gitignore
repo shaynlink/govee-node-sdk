@@ -1,1 +1,2 @@
-node_module
+# Remove dependecies folder (can install with > yarn )
+node_modules/
