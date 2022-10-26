@@ -9,6 +9,7 @@
       "importHelpers": true,
       "isolatedModules": false,
       "lib": ["ES5", "ES6", "es2020"],
+      "outDir": "dist",
       "sourceMap": true,
       "target": "ES2021",
       "alwaysStrict": true,
@@ -18,7 +19,7 @@
       "esModuleInterop": false,
       "allowSyntheticDefaultImports": true,
       "resolveJsonModule": true,
-      "moduleResolution": "node"
+      "module": "CommonJS"
     },
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules"]

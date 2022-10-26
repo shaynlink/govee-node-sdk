@@ -6,12 +6,7 @@
   "author": "shaynlink",
   "license": "MIT",
   "private": false,
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/src/index.js",
-      "import": "./dist/esm/src/index.mjs"
-    }
-  },
+  "main": "./dist/src",
   "devDependencies": {
     "@types/jest": "^29.2.0",
     "@types/node": "^18.11.5",
@@ -25,7 +20,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc --build cjs.tsconfig.json && tsc --build esm.tsconfig.json",
+    "build": "tsc",
     "lint": "eslint",
     "preinstall": "npm run build"
   },
