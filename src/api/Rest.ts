@@ -1,6 +1,7 @@
 'use strict';
 
-import axios, {AxiosInstance} from 'axios';
+import * as axios from 'axios';
+import type {AxiosInstance} from 'axios';
 import type Client from '../client/Client';
 import {version} from '../../package.json';
 
@@ -15,7 +16,7 @@ export default class Rest {
    * @param {Client} client - govee-node-sdk Client
    */
   constructor(client: Client) {
-    this.instance = axios.create({
+    this.instance = (<any>axios).create({
       baseURL: 'https://developer-api.govee.com/v1/',
       headers: {
         'Govee-API-Key': client.goveeApiKey,

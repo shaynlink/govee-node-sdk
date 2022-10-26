@@ -1,6 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios_1 = require("axios");
+const axios = require("axios");
 const package_json_1 = require("../../package.json");
 const NODE_ENV = process.env.NODE_ENV ?? 'unknown';
 /**
@@ -11,7 +11,7 @@ class Rest {
      * @param {Client} client - govee-node-sdk Client
      */
     constructor(client) {
-        this.instance = axios_1.default.create({
+        this.instance = axios.create({
             baseURL: 'https://developer-api.govee.com/v1/',
             headers: {
                 'Govee-API-Key': client.goveeApiKey,

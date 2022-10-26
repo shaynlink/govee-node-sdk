@@ -1,4 +1,4 @@
-import { AxiosInstance } from 'axios';
+import type { AxiosInstance } from 'axios';
 import type Client from '../client/Client';
 /**
  * Rest class for communicate with GOVEE Api
