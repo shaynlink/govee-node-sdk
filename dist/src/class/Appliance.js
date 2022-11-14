@@ -14,6 +14,8 @@ class Appliance extends BaseDevice_1.default {
         this.client = client;
         this.supportCmds = data.supportCmds;
         this.properties = data.properties;
+        this._data.supportCmds = data.supportCmds;
+        this._data.properties = data.properties;
     }
     /**
      * @param {SupportApplianceCmd} cmdName - device command
@@ -30,7 +32,7 @@ class Appliance extends BaseDevice_1.default {
         if (cmdName == 'mode' && (!this.properties?.mode.options.some((opt) => opt.value == cmdValue))) {
             throw Error(`Value of ${cmdName} is not include ${cmdValue}`);
         }
-        return this.client.rest.instance.put('/appliance/devices/control', {
+        return this.client.rest.put('/appliance/devices/control', {
             device: this.device,
             model: this.model,
             cmd: {

@@ -10,11 +10,12 @@ import type {
 } from '../api-definition';
 import Device from '../class/Device';
 import Appliance from '../class/Appliance';
+import {EventEmitter} from 'node:events';
 
 /**
  * Client
  */
-export default class Client {
+export default class Client extends EventEmitter {
   public goveeApiKey: string;
   public rest: Rest;
   public devices: Map<string, Device>;
@@ -23,6 +24,7 @@ export default class Client {
    * @param {string} goveeApiKey
    */
   constructor(goveeApiKey: string) {
+    super();
     this.goveeApiKey = goveeApiKey;
 
     if (!this.goveeApiKey && ('GOVEE_API_KEY' in process.env)) {
@@ -39,7 +41,7 @@ export default class Client {
    * @return {Promise<Map<string, Device>>}
    */
   public deviceList(): Promise<Map<string, Device>> {
-    return this.rest.instance.get('/devices', {
+    return this.rest.get('/devices', {
       validateStatus(status: number) {
         return status == 200;
       },
@@ -60,7 +62,7 @@ export default class Client {
    * @return {Promise<Map<string, Appliance>>}
    */
   public applianceList(): Promise<Map<string, Appliance>> {
-    return this.rest.instance.get('/appliance/devices', {
+    return this.rest.get('/appliance/devices', {
       validateStatus(status: number) {
         return status == 200;
       },
@@ -77,5 +79,14 @@ export default class Client {
               });
           return this.appliances;
         });
+  }
+
+  /**
+   * Uncork / Unref function
+   * @return {this}
+   */
+  public close() {
+    this.rest.destroy();
+    return this;
   }
 };

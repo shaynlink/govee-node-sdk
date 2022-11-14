@@ -13,6 +13,7 @@ class BaseDevice {
         this.deviceName = data.deviceName;
         this.controllable = data.controllable;
         this.retrievable = data.retrievable;
+        this._data = data;
     }
 }
 exports.default = BaseDevice;

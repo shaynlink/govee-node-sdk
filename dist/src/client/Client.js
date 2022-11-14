@@ -3,14 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Rest_1 = require("../api/Rest");
 const Device_1 = require("../class/Device");
 const Appliance_1 = require("../class/Appliance");
+const node_events_1 = require("node:events");
 /**
  * Client
  */
-class Client {
+class Client extends node_events_1.EventEmitter {
     /**
      * @param {string} goveeApiKey
      */
     constructor(goveeApiKey) {
+        super();
         this.goveeApiKey = goveeApiKey;
         if (!this.goveeApiKey && ('GOVEE_API_KEY' in process.env)) {
             this.goveeApiKey = process.env.GOVEE_API_KEY;
@@ -24,7 +26,7 @@ class Client {
      * @return {Promise<Map<string, Device>>}
      */
     deviceList() {
-        return this.rest.instance.get('/devices', {
+        return this.rest.get('/devices', {
             validateStatus(status) {
                 return status == 200;
             },
@@ -43,7 +45,7 @@ class Client {
      * @return {Promise<Map<string, Appliance>>}
      */
     applianceList() {
-        return this.rest.instance.get('/appliance/devices', {
+        return this.rest.get('/appliance/devices', {
             validateStatus(status) {
                 return status == 200;
             },
@@ -56,6 +58,14 @@ class Client {
             });
             return this.appliances;
         });
+    }
+    /**
+     * Uncork / Unref function
+     * @return {this}
+     */
+    close() {
+        this.rest.destroy();
+        return this;
     }
 }
 exports.default = Client;

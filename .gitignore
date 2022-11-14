@@ -1,2 +1,6 @@
 # Remove dependecies folder (can install with > yarn )
 node_modules/
+# yarn cach
+.yarn
+# distination folder
+dist/

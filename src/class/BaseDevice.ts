@@ -13,6 +13,7 @@ export default class BaseDevice {
   public deviceName?: string;
   public controllable: boolean;
   public retrievable: boolean;
+  public _data: any;
   /**
    * @param {DeviceResponseDataDefault} data
    */
@@ -22,5 +23,14 @@ export default class BaseDevice {
     this.deviceName = data.deviceName;
     this.controllable = data.controllable;
     this.retrievable = data.retrievable;
+    this._data = data;
+  }
+
+  /**
+   * Return data
+   * @return {any}
+   */
+  toJSON() {
+    return this._data;
   }
 }

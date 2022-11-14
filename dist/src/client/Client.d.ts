@@ -1,10 +1,12 @@
+/// <reference types="node" />
 import Rest from '../api/Rest';
 import Device from '../class/Device';
 import Appliance from '../class/Appliance';
+import { EventEmitter } from 'node:events';
 /**
  * Client
  */
-export default class Client {
+export default class Client extends EventEmitter {
     goveeApiKey: string;
     rest: Rest;
     devices: Map<string, Device>;
@@ -23,5 +25,10 @@ export default class Client {
      * @return {Promise<Map<string, Appliance>>}
      */
     applianceList(): Promise<Map<string, Appliance>>;
+    /**
+     * Uncork / Unref function
+     * @return {this}
+     */
+    close(): this;
 }
 //# sourceMappingURL=Client.d.ts.map

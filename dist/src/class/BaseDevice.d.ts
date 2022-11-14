@@ -8,6 +8,7 @@ export default class BaseDevice {
     deviceName?: string;
     controllable: boolean;
     retrievable: boolean;
+    _data: any;
     /**
      * @param {DeviceResponseDataDefault} data
      */

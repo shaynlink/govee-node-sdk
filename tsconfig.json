@@ -21,7 +21,7 @@
       "resolveJsonModule": true,
       "module": "CommonJS"
     },
-    "include": ["src/**/*.ts"],
+    "include": ["src/**/*.ts", "src/index.cts", "src/index.cts"],
     "exclude": ["node_modules"]
   }
   

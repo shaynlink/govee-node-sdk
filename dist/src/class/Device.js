@@ -14,6 +14,8 @@ class Device extends BaseDevice_1.default {
         this.client = client;
         this.supportCmds = data.supportCmds;
         this.properties = data.properties;
+        this._data.supportCmds = data.supportCmds;
+        this._data.properties = data.properties;
     }
     /**
      * @param {SupportCmd} cmdName - device command
@@ -39,7 +41,7 @@ class Device extends BaseDevice_1.default {
             cmdValue > this.properties?.colorTem.range.max)) {
             throw Error(`Value of ${cmdName} is not correct ${cmdValue}`);
         }
-        return this.client.rest.instance.put('/devices/control', {
+        return this.client.rest.put('/devices/control', {
             device: this.device,
             model: this.model,
             cmd: {
@@ -59,7 +61,7 @@ class Device extends BaseDevice_1.default {
      * @return {DeviceStateResponseData}
      */
     state() {
-        return this.client.rest.instance.get('/devices/state', {
+        return this.client.rest.get('/devices/state', {
             params: {
                 device: this.device,
                 model: this.model,
